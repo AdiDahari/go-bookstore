@@ -5,7 +5,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-var db *gorm.DB
+var db gorm.DB
 
 type Book struct {
 	gorm.Model
@@ -16,7 +16,7 @@ type Book struct {
 
 func init() {
 	config.Connect()
-	db = config.GetDB()
+	db = *config.GetDB()
 	db.AutoMigrate(&Book{})
 }
 
